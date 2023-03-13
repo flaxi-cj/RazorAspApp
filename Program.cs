@@ -18,8 +18,19 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGet("/", async context =>
+    {
+        context.Response.StatusCode = 200;
+        await context.Response.WriteAsync("OK");
+    });
+
+    endpoints.MapControllers();
+});
+
 app.UseAuthorization();
 
 app.MapRazorPages();
 
-app.Start();
+app.Run();
